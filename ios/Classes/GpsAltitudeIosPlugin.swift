@@ -2,21 +2,24 @@ import Flutter
 import UIKit
 import CoreLocation
 
-public class SwiftGpsAltitudeIosPlugin: NSObject, FlutterPlugin, CLLocationManagerDelegate {
+public class GpsAltitudeIosPlugin: NSObject, FlutterPlugin, CLLocationManagerDelegate {
   var locationManager: CLLocationManager?
   var resultCallback: FlutterResult?
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "gps_altitude_ios", binaryMessenger: registrar.messenger())
-    let instance = SwiftGpsAltitudeIosPlugin()
+    let instance = GpsAltitudeIosPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    if call.method == "getGpsAltitude" {
+    switch call.method {
+    case "getPlatformVersion":
+      result("iOS " + UIDevice.current.systemVersion)
+    case "getGpsAltitude":
       resultCallback = result
       startLocationUpdates()
-    } else {
+    default:
       result(FlutterMethodNotImplemented)
     }
   }
