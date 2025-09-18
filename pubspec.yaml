@@ -1,0 +1,18 @@
+name: gps_altitude_ios
+description: A Flutter plugin to get raw GPS-only altitude (HAE) on iOS.
+version: 1.0.0
+homepage: https://github.com/onhiw/gps_altitude_ios.git
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      ios:
+        pluginClass: GpsAltitudeIosPlugin
